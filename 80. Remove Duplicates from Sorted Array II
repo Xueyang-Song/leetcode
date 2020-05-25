@@ -1,0 +1,14 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 2;
+        for(int j = 2; j <= nums.length-1; j++){ //必须等于长度减1，否则会有runtime警告
+            if(nums[j] != nums[i-2]){
+                nums[i++] = nums[j];
+            }
+        }
+        return i;
+    }
+}
+
+//Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Duplicates from Sorted Array II.
+//Memory Usage: 39.3 MB, less than 5.26% of Java online submissions for Remove Duplicates from Sorted Array II.
