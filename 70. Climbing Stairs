@@ -1,0 +1,17 @@
+class Solution {
+    public int climbStairs(int n) {
+    // 1. 1 step, 1种
+    // 2. 2 step, 2种
+    // 3. f(1) + f(2) 斐波那契数列
+        if (n == 1) {
+            return 1;
+        }
+        int [] methods = new int [n + 1];
+        methods[1] = 1;
+        methods[2] = 2;
+        for (int i = 3; i <= n; i++){
+            methods[i] = methods[i - 1] + methods[i - 2];
+        }
+        return methods[n];
+    }
+}
