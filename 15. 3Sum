@@ -1,0 +1,36 @@
+// a + b --> -c
+// 1.三重直接求解；
+// 2.hash table 记录a b
+// 3.双指针左右下标向中间推进
+    // 首先排序 O(nlogn)
+    // 固定最小数字的指针k，用i j来分别从前后向中间移动
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        int target = 0;
+        List<List<Integer>> result = new ArrayList<>();
+      if (nums.length < 3) return result;
+       //corner case  
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int j = i + 1; //left pointer
+            int k = nums.length - 1; //right pointer
+            while (j < k) {
+                if (nums[i] + nums[k] + nums[j] < target) {
+                    j++;
+                    while (j < k && nums[j] == nums[j-1]) j++;
+                }else if (nums[i] + nums[k] + nums[j] > target) {
+                    k--;
+                    while (j < k && nums[k] == nums[k+1]) k--;
+                }else {
+                    result.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                    j++;
+                    k--;
+                    while (j < k && nums[j] == nums[j-1]) j++;
+                    while (j < k && nums[k] == nums[k+1]) k--;              
+                }
+            }
+        }
+        return result;
+    } 
+}
