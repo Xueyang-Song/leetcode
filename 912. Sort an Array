@@ -1,0 +1,34 @@
+class Solution {
+    public int[] sortArray(int[] nums) {
+        quickSort(nums, 0, nums.length - 1);
+        return nums;
+    }
+    
+    public void quickSort(int[] A, int start, int end) {
+        
+        if (start >= end) {
+            return;
+        }
+        int pivot = A[start];
+        int left = start;
+        int right = end;
+        
+        while (left <= right) {
+            while (left <= right && A[left] < pivot) {
+                left++;
+            }
+            while (left <= right && A[right] > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                int temp = A[left];
+                A[left] = A[right];
+                A[right] =temp;
+                left++;
+                right--;
+            }
+        }
+        quickSort(A, start, right);
+        quickSort(A, left, end);
+    }
+}
