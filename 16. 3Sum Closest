@@ -1,0 +1,20 @@
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int diff = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length && diff != 0; i++){
+       
+        int right = i + 1;
+        int left = nums.length - 1;
+        
+        while (right < left) {
+            int sum = nums[i] + nums[right] + nums[left];
+            if (Math.abs(target - sum) < Math.abs(diff)) diff = target - sum;
+            if (sum < target) right++;
+            else left--;
+        }
+        
+    }
+        return target - diff;
+   }  
+}
