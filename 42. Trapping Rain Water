@@ -1,0 +1,33 @@
+class Solution {
+    public int trap(int[] height) {
+        int high_index = 0;
+        for (int i = 0; i < height.length; i++) {
+            if (height[i] > height[high_index]) {
+                high_index = i;
+            }
+        }
+        
+        //left part
+        
+        int high_left = 0;
+        int water = 0;
+        for (int i = 0; i < high_index; i++) {
+            if (high_left < height[i]) {
+                high_left = height[i];
+            } else {
+                water += high_left - height[i];
+            }
+        }
+        
+        //right part
+        int high_right = 0;
+        for (int i = height.length - 1; i > high_index; i--) {
+            if (high_right < height[i]) {
+                high_right = height[i];
+            } else {
+                water += high_right - height[i];
+            }
+        }
+        return water;
+    }
+}
